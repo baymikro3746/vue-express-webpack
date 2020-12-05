@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "node ./src/backend/index.js",
+    "dev": "concurrently \"npm:server\" \"npm:dev:start\" -c \"green,blue\"",
+    "server": "nodemon --ignore .cache/ --ignore dist/ --ignore node_modules/ ./src/backend/server.js",
+    "dev:start": "vue-cli-service serve --out-dir ./dist --public-url / --port 1231",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "concurrently": "^5.3.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0"
   },
